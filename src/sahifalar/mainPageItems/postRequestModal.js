@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "./postModal.scss";
 import { createFruniture } from "../../barcha_sorovlar/post/create_furniture";
+import { ModalTogle } from "../../App";
 
-export default function PostRequestModal({check_mod,close_funk}) {
+export default function PostRequestModal() {
 
-    const [showError,setShowError] = useState(false)
+  const {setMod_togle} = useContext(ModalTogle)
+
     const [furnitureInfo,setFurnitureInfo] = useState({
         photo:'',
         length:'',
@@ -29,12 +31,13 @@ export default function PostRequestModal({check_mod,close_funk}) {
         const response_request = createFruniture(furnitureInfo);
         if(response_request.statusCode === 401 || !response_request){
 
+        }else{
+
         }
     }
 
   return (
     <div className="postModal">
-        {showError&&''}
       <h1>Yangi mebel yaratish</h1>
       <div className="mebel_info">
         <div className="input_grp">

@@ -1,0 +1,25 @@
+.success_div,
+.error_div {
+  position: absolute;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  top: 10%;
+  left: 50%;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  width: 260px;
+  word-spacing: 3px;
+  letter-spacing: 1px;
+}
+
+.error_div {
+  background-color: #ff0037;
+}
+
+.success_div {
+  background-color: #00ff22;
+}
