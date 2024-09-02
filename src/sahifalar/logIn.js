@@ -73,6 +73,7 @@ function LogIn() {
               name="fullname"
               value={user_info.fullname}
               onChange={handleChangeUser_info}
+              required
             />
             <input
               type="text"
@@ -80,6 +81,7 @@ function LogIn() {
               name="username"
               value={user_info.username}
               onChange={handleChangeUser_info}
+              required
             />
             <input
               type="text"
@@ -87,6 +89,7 @@ function LogIn() {
               name="password"
               value={user_info.password}
               onChange={handleChangeUser_info}
+              required
             />
             <button onClick={() => { check_response(create_url, user_info) }}>Ro`yhatdan o`tish</button>
           </div>
@@ -98,6 +101,7 @@ function LogIn() {
               name="username"
               value={log_info.username}
               onChange={handleChangeLog_info}
+              required
             />
             <input
               type="text"
@@ -105,6 +109,7 @@ function LogIn() {
               name="password"
               value={log_info.password}
               onChange={handleChangeLog_info}
+              required
             />
             <button onClick={() => { check_response(logIn_url, log_info) }}>Kirish</button>
           </div>
