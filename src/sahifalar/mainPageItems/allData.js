@@ -2,10 +2,10 @@ import React from 'react'
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 
-export default function AllData({item_infos}) {
+export default function AllData() {
   return (
     <div className='all_data'>
-        {item_infos.map((r,index)=>(
+        {/* {item_infos.map((r,index)=>(
             <div key={index}>
                 <div className='img_edit_del'>
                     <img src='' alt='mebel rasmi' />
@@ -16,7 +16,7 @@ export default function AllData({item_infos}) {
                     </div>
                 </div>
             </div>
-        ))}
+        ))} */}
     </div>
   )
 }

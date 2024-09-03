@@ -1,0 +1,50 @@
+.mainPage {
+  width: 1300px;
+  margin: 50px auto;
+}
+
+.grp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #100130;
+  .new_furniture {
+    background-color: #048104ec;
+    font-size: 18px;
+    padding: 8px 15px;
+    font-weight: 500;
+    color: #fff;
+    border: none;
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #100130;
+    input {
+      border: none;
+      background-color: none;
+      color: #100130;
+      padding: 8px 15px;
+      font-size: 18px;
+    }
+    button {
+      padding: 8px 15px;
+      border: none;
+      border-left: 1px solid gray;
+      background: #100130;
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+}
+
+.data_body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

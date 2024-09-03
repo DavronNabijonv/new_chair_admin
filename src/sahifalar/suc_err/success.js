@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ResponseMessage } from "../../App";
-import "./suc_res.scss";
+import "./suc_err.scss";
 
 export default function Success() {
   const { res_message } = useContext(ResponseMessage);

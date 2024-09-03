@@ -2,16 +2,18 @@ import "./logIn.scss";
 import React, { useCallback, useContext, useState } from "react";
 import { create_Admin } from "../barcha_sorovlar/post/auth_post";
 import { useNavigate } from "react-router-dom";  // Step 2: Import useNavigate
-import { ResponseMessage, ShowError } from "../App";
+import { GetAccessToken, ResponseMessage, ShowError } from "../App";
+import Error_res from "./suc_err/error";
 
 function LogIn() {
   const create_url = 'http://194.226.49.125:8000/v1/api/auth/add';
   const logIn_url = 'http://194.226.49.125:8000/v1/api/auth/login';
 
-  const {error_response,setError_response} = useContext(ShowError);
-  const {setRes_message} = useContext(ResponseMessage)
+  const { error_response, setError_response } = useContext(ShowError);
+  const { setRes_message } = useContext(ResponseMessage);
+  const {setToken} = useContext(GetAccessToken); 
   const [tog, setTog] = useState(false);
-  
+
   const navigate = useNavigate();  // Moved useNavigate hook to the top of the component
 
   const [user_info, setUser_info] = useState({
@@ -40,30 +42,39 @@ function LogIn() {
   }, []);
 
   const check_response = async (url, info) => {
-    try {
-      const res = await create_Admin(url, info);
-      console.log(res);
+    const res = await create_Admin(url, info);
 
-      if (res && res.data && res.data.id) {
-        setRes_message(`Foydalanuvchi ro'yhatdan o'tkazildi.`);
-        setError_response(true)
+    if (res.success) {
+        // Assuming res.response.data contains an access token on success
+        setToken(res.response?.data?.access_token); 
+        console.log('salom',res.response?.data?.access_token)
+        navigate("/main_page");
+    } else {
+        // Handle error response
+        setRes_message(res.response?.data?.message || "An error occurred");
+        setError_response(true);
         remove_PopUP();
-        navigate("/main_page");  // Navigate is correctly used here
-      } else {
-        throw new Error("Failed to create user.");
-      }
-    } catch (error) {
-      setRes_message(error.response?.data?.message || error.message);
-      remove_PopUP();
     }
+};
+
+
+  // Improved onSubmit handlers
+  const handleSubmitRegister = (e) => {
+    e.preventDefault();  // Prevent default form submission
+    check_response(create_url, user_info);
+  };
+
+  const handleSubmitLogin = (e) => {
+    e.preventDefault();  // Prevent default form submission
+    check_response(logIn_url, log_info);
   };
 
   return (
     <>
       <div className="togle_log">
-        {error_response&&<Error />}
+        {error_response && <Error_res />}
         {tog ? (
-          <div className="royhat">
+          <form onSubmit={handleSubmitRegister} className="royhat">
             <input
               type="text"
               placeholder="To`liq ismingizni kiriting"
@@ -81,17 +92,17 @@ function LogIn() {
               required
             />
             <input
-              type="text"
+              type="password"  // Change input type to password
               placeholder="Parolni kiriting"
               name="password"
               value={user_info.password}
               onChange={handleChangeUser_info}
               required
             />
-            <button onClick={() => { check_response(create_url, user_info) }}>Ro`yhatdan o`tish</button>
-          </div>
+            <button type="submit">Ro`yhatdan o`tish</button>
+          </form>
         ) : (
-          <div className="royhat">
+          <form onSubmit={handleSubmitLogin} className="royhat">
             <input
               type="text"
               placeholder="Foydalanuvchi nomi"
@@ -101,15 +112,15 @@ function LogIn() {
               required
             />
             <input
-              type="text"
+              type="password"  // Change input type to password
               placeholder="Parolni kiriting"
               name="password"
               value={log_info.password}
               onChange={handleChangeLog_info}
               required
             />
-            <button onClick={() => { check_response(logIn_url, log_info) }}>Kirish</button>
-          </div>
+            <button type="submit">Kirish</button>
+          </form>
         )}
         {tog ? (
           <p className="change_txt">
