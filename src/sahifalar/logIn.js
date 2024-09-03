@@ -1,15 +1,15 @@
 import "./logIn.scss";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { create_Admin } from "../barcha_sorovlar/post/auth_post";
 import { useNavigate } from "react-router-dom";  // Step 2: Import useNavigate
+import { ResponseMessage, ShowError } from "../App";
 
 function LogIn() {
   const create_url = 'http://194.226.49.125:8000/v1/api/auth/add';
   const logIn_url = 'http://194.226.49.125:8000/v1/api/auth/login';
 
-  const [error_txt, setError_txt] = useState();
-  const [response_txt, setResponse_txt] = useState();
-  const [togle_text, setTogle_text] = useState(false);
+  const {error_response,setError_response} = useContext(ShowError);
+  const {setRes_message} = useContext(ResponseMessage)
   const [tog, setTog] = useState(false);
   
   const navigate = useNavigate();  // Moved useNavigate hook to the top of the component
@@ -35,7 +35,7 @@ function LogIn() {
 
   const remove_PopUP = useCallback(() => {
     setTimeout(() => {
-      setTogle_text(false);
+      setError_response(false);
     }, 3000);
   }, []);
 
@@ -45,18 +45,15 @@ function LogIn() {
       console.log(res);
 
       if (res && res.data && res.data.id) {
-        setResponse_txt(`Foydalanuvchi ro'yhatdan o'tkazildi.`);
-        setError_txt(null);  // Clear error text if successful
-        setTogle_text(true);
+        setRes_message(`Foydalanuvchi ro'yhatdan o'tkazildi.`);
+        setError_response(true)
         remove_PopUP();
         navigate("/main_page");  // Navigate is correctly used here
       } else {
         throw new Error("Failed to create user.");
       }
     } catch (error) {
-      setError_txt(error.response?.data?.message || error.message);
-      setResponse_txt(null);  // Clear response text if there is an error
-      setTogle_text(true);
+      setRes_message(error.response?.data?.message || error.message);
       remove_PopUP();
     }
   };
@@ -64,7 +61,7 @@ function LogIn() {
   return (
     <>
       <div className="togle_log">
-        {togle_text && <Show_error txt_error={error_txt} txt_response={response_txt} />}
+        {error_response&&<Error />}
         {tog ? (
           <div className="royhat">
             <input
@@ -129,11 +126,3 @@ function LogIn() {
 }
 
 export default LogIn;
-
-function Show_error({ txt_error, txt_response }) {
-  return (
-    <div className={txt_error ? "show_error" : "show_response"}>
-      {txt_error || txt_response}
-    </div>
-  );
-}
