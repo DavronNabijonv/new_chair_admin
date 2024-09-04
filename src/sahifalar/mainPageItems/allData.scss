@@ -1,0 +1,51 @@
+.all_data{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #100140;
+    width: 500px;
+}
+
+.img_edit_del{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    gap: 15px;
+    img{
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .btns_grp{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        button{
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            padding: 8px 15px;
+        }
+        .edit{
+            background-color: #100140;
+        }
+        .delete{
+            background-color: #af0303;
+        }
+    }
+}
