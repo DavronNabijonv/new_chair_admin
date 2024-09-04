@@ -89,7 +89,7 @@ export default function PostRequestModal() {
           </div>
           {/* Repeat the above for all inputs */}
           <div className="input_grp">
-            <label for="length">Uzunligi</label>
+            <label for="length">Uzunligi:</label>
             <input
               name="length"
               type="text"
@@ -100,7 +100,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="breadth">Uzunligi</label>
+            <label for="breadth">Kengligi:</label>
             <input
               name="breadth"
               type="text"
@@ -111,7 +111,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="height">Uzunligi</label>
+            <label for="height">Balandlik:</label>
             <input
               name="height"
               type="text"
@@ -122,7 +122,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="material">Uzunligi</label>
+            <label for="material">Stul materiali:</label>
             <input
               name="material"
               type="text"
@@ -133,7 +133,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="weight">Uzunligi</label>
+            <label for="weight">Og`irlig:</label>
             <input
               name="weight"
               type="text"
@@ -144,7 +144,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="frame">Uzunligi</label>
+            <label for="frame">Ramka rangi:</label>
             <input
               name="frame"
               type="text"
@@ -155,7 +155,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="cover">Uzunligi</label>
+            <label for="cover">Stul qopqog`i:</label>
             <input
               name="cover"
               type="text"
@@ -166,7 +166,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="option">Uzunligi</label>
+            <label for="option">Stul optsiyasi:</label>
             <input
               name="option"
               type="text"
@@ -177,7 +177,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="color">Uzunligi</label>
+            <label for="color">Rangi:</label>
             <input
               name="color"
               type="text"
@@ -188,7 +188,7 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="folding">Uzunligi</label>
+            <label for="folding">Stul katlanishi:</label>
             <input
               name="folding"
               type="text"
