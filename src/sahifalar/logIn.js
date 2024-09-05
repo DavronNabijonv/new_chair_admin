@@ -6,8 +6,9 @@ import { GetAccessToken, ResponseMessage, ShowError } from "../App";
 import Error_res from "./suc_err/error";
 
 function LogIn() {
-  const create_url = 'http://194.226.49.125:8000/v1/api/auth/add';
-  const logIn_url = 'http://194.226.49.125:8000/v1/api/auth/login';
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const create_url = `${apiUrl}/auth/add`;
+  const logIn_url = `${apiUrl}/auth/login`;
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
@@ -66,7 +67,7 @@ function LogIn() {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();  // Prevent default form submission
-    check_response( log_info);
+    check_response(logIn_url, log_info);
   };
 
   return (

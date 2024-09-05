@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export async function patch_furniture(id, data_furniture, edit_token) {
-  const url = `http://194.226.49.125:8000/v1/api/products/${id}`;
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const url = `${apiUrl}/products/${id}`;
 
   // Create a FormData object if there's a file to upload
   const formData = new FormData();

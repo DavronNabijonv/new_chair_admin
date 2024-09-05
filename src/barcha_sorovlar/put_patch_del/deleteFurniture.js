@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export async function delete_furniture(furniture_id, del_token) {
-  const url = `http://194.226.49.125:8000/v1/api/products/${furniture_id}`; // Use furniture_id in the URL
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const url = `${apiUrl}/products/${furniture_id}`; // Use furniture_id in the URL
 
   try {
     const response = await axios.delete(url, {
