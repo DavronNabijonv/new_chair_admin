@@ -66,7 +66,7 @@ function LogIn() {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();  // Prevent default form submission
-    check_response(logIn_url, log_info);
+    check_response( log_info);
   };
 
   return (
