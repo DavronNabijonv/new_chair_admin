@@ -9,6 +9,8 @@ function LogIn() {
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const create_url = `${apiUrl}/auth/add`;
   const logIn_url = `${apiUrl}/auth/login`;
+  console.log('to`liq url',create_url)
+    console.log('env url', apiUrl)
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
@@ -43,8 +45,7 @@ function LogIn() {
   }, []);
 
   const check_response = async (url, info) => {
-    console.log('to`liq url',url)
-    console.log('env url', apiUrl)
+    
     const res = await create_Admin(url, info);
 
     if (res.success) {
