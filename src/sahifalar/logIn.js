@@ -43,6 +43,8 @@ function LogIn() {
   }, []);
 
   const check_response = async (url, info) => {
+    console.log('to`liq url',url)
+    console.log('env url', apiUrl)
     const res = await create_Admin(url, info);
 
     if (res.success) {
