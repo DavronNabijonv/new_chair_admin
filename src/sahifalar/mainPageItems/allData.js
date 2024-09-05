@@ -3,6 +3,7 @@ import "./allData.scss";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import EditModal from "../requestModals/editModal";
+import Delete from "../requestModals/delete";
 
 export default function AllData({ item_infos }) {
   const [get_info,setGet_info] = useState();
@@ -15,6 +16,7 @@ export default function AllData({ item_infos }) {
   return (
     <div className="all_data">
       {tog_edit&&<EditModal close_mod_func={()=>{setTog_edit(false)}} infos={get_info} />}
+      {tog_del&&<Delete close_del_func={()=>{setTog_del(false)}} del_info={get_info}/>}
       {item_infos.map((r, index) => (
         <div key={index} className="cards">
           <div className='img_edit_del'>
@@ -23,7 +25,7 @@ export default function AllData({ item_infos }) {
               <button className="edit" 
               onClick={()=>{setTog_edit(true);setGet_info(r)}}
               ><CiEdit /></button>
-              <button className="delete"><MdDelete /></button>
+              <button className="delete" onClick={()=>{setTog_del(true);setGet_info(r)}}><MdDelete /></button>
             </div>
           </div>
           <div className="img_info">

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LogIn from "./sahifalar/logIn";
 import MainPage from "./sahifalar/mainPage";
 import EditModal from "./sahifalar/requestModals/editModal";
+import Delete from "./sahifalar/requestModals/delete";
 
 export const ShowError = React.createContext();
 export const ShowSuccess = React.createContext();
