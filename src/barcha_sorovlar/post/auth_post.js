@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export async function create_Admin(url, info) {
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
+export async function create_Admin(endpoint, info) {
     try {
-        const response = await axios.post(url, info);
+        const response = await axios.post(`${apiUrl}/${endpoint}`, info);
         return { response, success: true };  // Return an object with response and success flag
     } catch (error) {
         return {

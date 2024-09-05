@@ -1,26 +1,24 @@
 import "./logIn.scss";
 import React, { useCallback, useContext, useState } from "react";
 import { create_Admin } from "../barcha_sorovlar/post/auth_post";
-import { useNavigate } from "react-router-dom";  // Step 2: Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { GetAccessToken, ResponseMessage, ShowError } from "../App";
 import Error_res from "./suc_err/error";
 
 function LogIn() {
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
-  const create_url = `${apiUrl}/auth/add`;
-  const logIn_url = `${apiUrl}/auth/login`;
-  console.log('to`liq url',create_url)
-    console.log('env url', apiUrl)
+  const create_url = `auth/add`;  // Relative path
+  const logIn_url = `auth/login`; // Relative path
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
-  const {setToken} = useContext(GetAccessToken); 
+  const { setToken } = useContext(GetAccessToken);
   const [tog, setTog] = useState(false);
 
-  const navigate = useNavigate();  // Moved useNavigate hook to the top of the component
+  const navigate = useNavigate();
 
   const [user_info, setUser_info] = useState({
-    fullname: "s",
+    fullname: "",
     username: "",
     password: "",
   });
@@ -45,24 +43,19 @@ function LogIn() {
   }, []);
 
   const check_response = async (url, info) => {
-    
     const res = await create_Admin(url, info);
 
     if (res.success) {
-        // Assuming res.response.data contains an access token on success
-        setToken(res.response?.data?.access_token); 
-        console.log('salom',res.response?.data?.access_token)
+        setToken(res.response?.data?.access_token);
+        console.log('salom', res.response?.data?.access_token)
         navigate("/main_page");
     } else {
-        // Handle error response
         setRes_message(res.response?.data?.message || "An error occurred");
         setError_response(true);
         remove_PopUP();
     }
-};
+  };
 
-
-  // Improved onSubmit handlers
   const handleSubmitRegister = (e) => {
     e.preventDefault();  // Prevent default form submission
     check_response(create_url, user_info);
@@ -96,7 +89,7 @@ function LogIn() {
               required
             />
             <input
-              type="password"  // Change input type to password
+              type="password"
               placeholder="Parolni kiriting"
               name="password"
               value={user_info.password}
@@ -116,7 +109,7 @@ function LogIn() {
               required
             />
             <input
-              type="password"  // Change input type to password
+              type="password"
               placeholder="Parolni kiriting"
               name="password"
               value={log_info.password}
