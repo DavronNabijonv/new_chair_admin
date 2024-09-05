@@ -18,7 +18,7 @@ function LogIn() {
   const navigate = useNavigate();  // Moved useNavigate hook to the top of the component
 
   const [user_info, setUser_info] = useState({
-    fullname: "",
+    fullname: "s",
     username: "",
     password: "",
   });
