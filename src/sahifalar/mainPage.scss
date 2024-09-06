@@ -56,3 +56,15 @@
   align-items: center;
   justify-content: center;
 }
+
+
+@media(max-width:1310px){
+  .mainPage{
+    width: 100%;
+  }
+
+  .grp{
+    flex-wrap: wrap;
+  }
+  
+}
