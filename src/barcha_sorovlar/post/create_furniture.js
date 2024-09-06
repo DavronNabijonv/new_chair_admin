@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export async function createFruniture(furniture_info, ac_token) {
-  const url = "http://194.226.49.125:8000/v1/api/products/add";
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const url = `${apiUrl}/products/add`;
 
   try {
     const request = await axios.post(url, furniture_info, {

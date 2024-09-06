@@ -12,8 +12,9 @@ export default function MainPage() {
   useEffect(() => {
     // get information of products
     async function fetchData() {
+      const apiUrl = process.env.REACT_APP_API_BASE_URL;
       try {
-        const url = "http://194.226.49.125:8000/v1/api/products";
+        const url = `${apiUrl}/products`;
 
         await axios.get(url).then((res) => {
           console.log(res.data.products);
