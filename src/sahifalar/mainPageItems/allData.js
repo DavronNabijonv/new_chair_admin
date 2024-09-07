@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./allData.scss";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
@@ -9,6 +9,14 @@ export default function AllData({ item_infos }) {
   const [get_info,setGet_info] = useState();
   const [tog_edit,setTog_edit] = useState(false);
   const [tog_del,setTog_del] = useState(false);
+  
+
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
+  useEffect(()=>{
+    console.log(` api Linki: ${apiUrl}/products/${get_info}`);
+  },[get_info])
+
   if (!item_infos || item_infos.length === 0) {
     return <p>No data available</p>; // Fallback if no items are available
   }
@@ -20,12 +28,12 @@ export default function AllData({ item_infos }) {
       {item_infos.map((r, index) => (
         <div key={index} className="cards">
           <div className='img_edit_del'>
-            <img src={r.photo} alt='mebel rasmi' />
+            <img src={`${apiUrl}/products/${r.photo}`} alt='mebel rasmi' />
             <div className='btns_grp'>
               <button className="edit" 
               onClick={()=>{setTog_edit(true);setGet_info(r)}}
               ><CiEdit /></button>
-              <button className="delete" onClick={()=>{setTog_del(true);setGet_info(r)}}><MdDelete /></button>
+              <button className="delete" onClick={()=>{ setTog_del(true);setGet_info(r);}}><MdDelete /></button>
             </div>
           </div>
           <div className="img_info">

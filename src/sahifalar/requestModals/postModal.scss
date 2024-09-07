@@ -25,6 +25,7 @@
   z-index: 1;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   width: 1200px;
   background-color: #fff;
@@ -102,4 +103,10 @@
             text-decoration: underline;
         }
     }
+}
+
+@media(max-width:1200px){
+  .postModal{
+    width: 100%;
+  }
 }
