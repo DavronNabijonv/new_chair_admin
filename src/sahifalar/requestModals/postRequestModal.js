@@ -122,29 +122,22 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="material">Stul materiali:</label>
-            <input
-              name="material"
-              type="text"
-              value={furnitureInfo.material}
-              onChange={handleChange}
-              placeholder="Stul materiali"
+              <label htmlFor="material">Stul materiali:</label>
+              <select 
+              name="material" // Make sure this matches your state property name
+              value={furnitureInfo.material} // Bind the value from state
+              onChange={handleChange} // Handle the change event
               required
-            />
+              >
+                  <option value="">Tanlang</option> {/* Add a default placeholder */}
+                  <option value="Yog`och">Yog`och</option>
+                  <option value="Metal">Metal</option>
+                  <option value="Nerjaveyka">Nerjaveyka</option>
+                  <option value="Plastik">Plastik</option>
+              </select>
           </div>
           <div className="input_grp">
-            <label for="weight">Og`irlig:</label>
-            <input
-              name="weight"
-              type="text"
-              value={furnitureInfo.weight}
-              onChange={handleChange}
-              placeholder="Stul ogirlig"
-              required
-            />
-          </div>
-          <div className="input_grp">
-            <label for="frame">Ramka rangi:</label>
+            <label for="frame">Stul oyoqlari rangi:</label>
             <input
               name="frame"
               type="text"
@@ -153,31 +146,60 @@ export default function PostRequestModal() {
               placeholder="Stul ramka_rangi"
               required
             />
+            {/* <label for="frame">Ramka rangi:</label>
+            <input
+              name="frame"
+              type="text"
+              value={furnitureInfo.frame}
+              onChange={handleChange}
+              placeholder="Stul ramka_rangi"
+              required
+            /> */}
           </div>
           <div className="input_grp">
-            <label for="cover">Stul qopqog`i:</label>
+            <label for="cover">Stul o`rindig`i:</label>
             <input
+              name="cover"
+              type="text"
+              value={furnitureInfo.cover}
+              onChange={handleChange}
+              placeholder="Stul o`rindig`i"
+              required
+            />
+            {/* <input
               name="cover"
               type="text"
               value={furnitureInfo.cover}
               onChange={handleChange}
               placeholder="Stul qopqogi"
               required
-            />
+            /> */}
           </div>
           <div className="input_grp">
-            <label for="option">Stul optsiyasi:</label>
-            <input
+            <label for="option">Stul oyoqlari:</label>
+            <select 
+            name="option"
+            value={furnitureInfo.option}
+            onChange={handleChange}
+            required
+            >
+              <option value={''}>Tanlang</option>
+              <option value="Yog`och">Yog`och</option>
+              <option value="Metal">Metal</option>
+              <option value="Nerjaveyka">Nerjaveyka</option>
+              <option value="Plastik">Plastik</option>
+            </select>
+            {/* <input
               name="option"
               type="text"
               value={furnitureInfo.option}
               onChange={handleChange}
               placeholder="Stul optiyasi"
               required
-            />
+            /> */}
           </div>
           <div className="input_grp">
-            <label for="color">Rangi:</label>
+            <label for="color">Stul o`rindig`i rangi:</label>
             <input
               name="color"
               type="text"
@@ -188,15 +210,23 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="folding">Stul katlanishi:</label>
+            <label for="folding">Stul o`rindiq rangi:</label>
             <input
+              name="folding"
+              type="text"
+              value={furnitureInfo.folding}
+              onChange={handleChange}
+              placeholder="Stul o`rindiq rangi"
+              required
+            />
+            {/* <input
               name="folding"
               type="text"
               value={furnitureInfo.folding}
               onChange={handleChange}
               placeholder="Stul katlanishi"
               required
-            />
+            /> */}
           </div>
           <div className="input_grp">
             <label for="region">Ishlab chiqarilgan mamlakat:</label>

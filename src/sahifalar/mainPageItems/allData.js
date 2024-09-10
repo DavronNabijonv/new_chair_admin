@@ -41,7 +41,7 @@ export default function AllData({ item_infos }) {
             <p className="txt">Uzunligi: {r.length}</p>
             <p className="txt">Kengligi: {r.breadth}</p>
             <p className="txt">Balandligi: {r.height}</p>
-            <p className="txt">Material: {r.material}</p>
+            <p className="txt">Stul oyoqlari: {r.material}</p>
             <p className="txt">Og`irligi: {r.weight}</p>
             <p className="txt">Ramka rangi: {r.frame}</p>
             <p className="txt">Olinadigan qopqog`i: {r.cover}</p>
