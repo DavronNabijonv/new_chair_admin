@@ -210,23 +210,23 @@ export default function PostRequestModal() {
             />
           </div>
           <div className="input_grp">
-            <label for="folding">Stul o`rindiq rangi:</label>
-            <input
+            <label for="folding">Stul qatlanishi:</label>
+            {/* <input
               name="folding"
               type="text"
               value={furnitureInfo.folding}
               onChange={handleChange}
               placeholder="Stul o`rindiq rangi"
               required
-            />
-            {/* <input
+            /> */}
+            <input
               name="folding"
               type="text"
               value={furnitureInfo.folding}
               onChange={handleChange}
-              placeholder="Stul katlanishi"
+              placeholder="Stul qatlanishi"
               required
-            /> */}
+            />
           </div>
           <div className="input_grp">
             <label for="region">Ishlab chiqarilgan mamlakat:</label>
