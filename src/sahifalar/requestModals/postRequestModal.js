@@ -18,7 +18,7 @@ export default function PostRequestModal() {
     breadth: "",
     height: "",
     material: "",
-    weight: "",
+    weight: "3",
     frame: "",
     cover: "",
     option: "",
