@@ -6,7 +6,6 @@ import { GetAccessToken, ResponseMessage, ShowError } from "../App";
 import Error_res from "./suc_err/error";
 
 function LogIn() {
-  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const create_url = `auth/add`;  // Relative path
   const logIn_url = `auth/login`; // Relative path
 
