@@ -28,7 +28,7 @@ export default function AllData({ item_infos }) {
       {item_infos.map((r, index) => (
         <div key={index} className="cards">
           <div className='img_edit_del'>
-            <img src={`${apiUrl}/products/${r.photo}`} alt='mebel rasmi' />
+            <img src={r.photo} alt='mebel rasmi' />
             <div className='btns_grp'>
               <button className="edit" 
               onClick={()=>{setTog_edit(true);setGet_info(r)}}
