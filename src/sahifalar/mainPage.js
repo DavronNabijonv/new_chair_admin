@@ -40,11 +40,21 @@ export default function MainPage() {
         const url = `${apiUrl}/products`;
 
         await axios.get(url).then((res) => {
-          let phot_url = res.data.products[0].photo;
-          let index_word = phot_url.indexOf("upload");
-          let secons_url = phot_url.substring(index_word + 7);
-          res.data.products[0].photo = secons_url;
-          console.log(res.data.products);
+          res.data.products.forEach((product, index) => {
+            let photo_url = product.photo;
+
+            // Find the position of 'upload' in the URL
+            let index_word = photo_url.indexOf('fakepath');
+            
+            // Ensure 'upload' exists in the URL before modifying it
+            if (index_word !== -1) {
+                // Extract the part of the URL after 'upload/'
+                let second_url = photo_url.substring(index_word + 9);
+                
+                // Update the photo URL with the new value
+                res.data.products[index].photo = second_url;
+            }
+        });
           setItem(res.data.products);
         });
       } catch (error) {
