@@ -40,6 +40,7 @@ export default function MainPage() {
         const url = `${apiUrl}/products`;
 
         await axios.get(url).then((res) => {
+          console.log(res)
           res.data.products.forEach((product, index) => {
             let photo_url = product.photo;
 

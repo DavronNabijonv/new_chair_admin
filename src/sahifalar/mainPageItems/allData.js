@@ -16,7 +16,7 @@ export default function AllData({ item_infos }) {
   const imageUrl = process.env.REACT_APP_IMAGE_BASE_URL;
 
   useEffect(()=>{
-    console.log(` api Linki: ${apiUrl}/products/${get_info}`);
+    console.log(`${item_infos}`);
   },[get_info])
 
   if (!item_infos || item_infos.length === 0) {
