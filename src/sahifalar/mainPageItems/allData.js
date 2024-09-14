@@ -6,12 +6,14 @@ import EditModal from "../requestModals/editModal";
 import Delete from "../requestModals/delete";
 
 export default function AllData({ item_infos }) {
+
   const [get_info,setGet_info] = useState();
   const [tog_edit,setTog_edit] = useState(false);
   const [tog_del,setTog_del] = useState(false);
   
 
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  const imageUrl = process.env.REACT_APP_IMAGE_BASE_URL;
 
   useEffect(()=>{
     console.log(` api Linki: ${apiUrl}/products/${get_info}`);
@@ -28,7 +30,7 @@ export default function AllData({ item_infos }) {
       {item_infos.map((r, index) => (
         <div key={index} className="cards">
           <div className='img_edit_del'>
-            <img src={r.photo} alt='mebel rasmi' />
+            <img src={`${imageUrl}/${r.photo}`} alt='mebel rasmi' />
             <div className='btns_grp'>
               <button className="edit" 
               onClick={()=>{setTog_edit(true);setGet_info(r)}}
