@@ -28,7 +28,7 @@ export default function MainPage() {
       setInfo_id(id_response); // Set the filtered data in the state
     } else {
       // Optional: Handle the case where no matching items are found
-      setInfo_id([]); // or any fallback behavior
+      setInfo_id([]); // or any fallback behaviorrr
     }
   };
 
