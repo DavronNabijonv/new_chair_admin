@@ -16,8 +16,8 @@ export default function AllData({ item_infos }) {
   const imageUrl = process.env.REACT_APP_IMAGE_BASE_URL;
 
   useEffect(()=>{
-    console.log(`${item_infos[0]}`)
-    console.log(` api Linki: ${apiUrl}/products/upload/`);
+    console.log(`bu:${item_infos[0].photo}`)
+    console.log(` api Linki rasmi: ${apiUrl}/products/upload/${item_infos[0].photo}`);
   },[get_info])
 
   if (!item_infos || item_infos.length === 0) {
@@ -31,7 +31,7 @@ export default function AllData({ item_infos }) {
       {item_infos.map((r, index) => (
         <div key={index} className="cards">
           <div className='img_edit_del'>
-            <img src={`${apiUrl}/upload/${r.photo}`} alt='mebel rasmi' />
+            <img src={`${imageUrl}/upload/${r.photo}`} alt='mebel rasmi' />
             <div className='btns_grp'>
               <button className="edit" 
               onClick={()=>{setTog_edit(true);setGet_info(r)}}
