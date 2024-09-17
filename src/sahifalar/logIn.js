@@ -6,8 +6,8 @@ import { GetAccessToken, ResponseMessage, ShowError } from "../App";
 import Error_res from "./suc_err/error";
 
 function LogIn() {
-  const create_url = `auth/add`;  // Relative ppath
-  const logIn_url = `auth/login`; // Relative path
+  const create_url = `v1/api/auth/add`;  // Relative ppath
+  const logIn_url = `v1/api/auth/login`; // Relative path
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
@@ -15,7 +15,7 @@ function LogIn() {
   const [tog, setTog] = useState(false);
 
   const navigate = useNavigate();
-
+  
   const [user_info, setUser_info] = useState({
     fullname: "",
     username: "",
@@ -46,7 +46,7 @@ function LogIn() {
 
     if (res.success) {
         setToken(res.response?.data?.access_token);
-        console.log('salom', res.response?.data?.access_token)
+        console.log('token:', res.response?.data?.access_token)
         navigate("/main_page");
     } else {
         setRes_message(res.response?.data?.message || "An error occurred");

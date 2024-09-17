@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import EditModal from "../requestModals/editModal";
 import Delete from "../requestModals/delete";
 
-export default function AllData({ item_infos }) {
+export default function AllData( {item_infos} ) {
 
   const [get_info,setGet_info] = useState();
   const [tog_edit,setTog_edit] = useState(false);
@@ -16,8 +16,7 @@ export default function AllData({ item_infos }) {
   const imageUrl = process.env.REACT_APP_IMAGE_BASE_URL;
 
   useEffect(()=>{
-    console.log(`bu:${item_infos[0].photo}`)
-    console.log(` api Linki rasmi: ${apiUrl}/products/upload/${item_infos[0].photo}`);
+    console.log('item data bu array',item_infos)
   },[get_info])
 
   if (!item_infos || item_infos.length === 0) {

@@ -13,7 +13,7 @@ export default function PostRequestModal() {
   const {token} = useContext(GetAccessToken);
 
   const [furnitureInfo, setFurnitureInfo] = useState({
-    photo: "",
+    photo: null,
     length: "",
     breadth: "",
     height: "",
@@ -29,7 +29,13 @@ export default function PostRequestModal() {
   });
 
   const handleChange = (e) => {
-    setFurnitureInfo({ ...furnitureInfo, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    
+    if (name === "photo") {
+      setFurnitureInfo({ ...furnitureInfo, photo: files[0] }); // Use files[0] for the image
+    } else {
+      setFurnitureInfo({ ...furnitureInfo, [name]: value });
+    }
   };
 
   const remove_PopUP_post = useCallback(() => {
@@ -47,7 +53,9 @@ export default function PostRequestModal() {
       setSuccess_response(true);
       remove_PopUP_post();
     }else{
-      setRes_message(res_request.request.data.message)
+      // Check if response.data exists
+      const errorMessage = res_request.response?.data?.message || "Unknown error occurred";
+      setRes_message(errorMessage);
       setError_response(true)
       remove_PopUP_post();
     }
@@ -78,12 +86,11 @@ export default function PostRequestModal() {
         <h1>Yangi mebel yaratish</h1>
         <form onSubmit={handleSubmit} className="mebel_info">
           <div className="input_grp">
-            <label htmlFor="photo">Mebel rasmini kiritng:</label>
+          <label htmlFor="photo">Mebel rasmini kiritng:</label>
             <input
               name="photo"
               type="file"
-              value={furnitureInfo.photo}
-              onChange={handleChange}
+              onChange={handleChange} // No value attribute for file inputs
               required
             />
           </div>

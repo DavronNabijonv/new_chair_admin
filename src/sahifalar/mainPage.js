@@ -11,7 +11,7 @@ export default function MainPage() {
   const [info_id, setInfo_id] = useState();
   const [id_data, setId_data] = useState(false);
   const { mod_togle, setMod_togle } = useContext(ModalTogle);
-  const [item, setItem] = useState([]); // Initialize as an empty array
+  const [item, setItem] = useState(); // Initialize as an empty array
 
   const handleId = async (e) => {
     setGet_id(e.target.value);
@@ -21,7 +21,7 @@ export default function MainPage() {
     e.preventDefault();
     setId_data(true); // This assumes you have a state to handle the filtering status
 
-    const id_response = item.filter((it) => it.name === get_id); // Filtering items based on the `name` property
+    const id_response = item.filter((it) => it.name == get_id); // Filtering items based on the `name` property
 
     if (id_response.length > 0) {
       // Check if there are any matching items
@@ -35,17 +35,15 @@ export default function MainPage() {
   useEffect(() => {
     // get information of products
     async function fetchData() {
-      const apiUrl = process.env.REACT_APP_API_BASE_URL;
       try {
-        const url = `${apiUrl}/products`;
-
-        await axios.get(url).then((res) => {
-          console.log(res)
-          res.data.products.forEach((product, index) => {
+        const { data } = await axios.get('http://85.159.231.67:4000/v1/api/products');
+        console.log(data)
+        data.products.forEach((product, index) => {
             let photo_url = product.photo;
-
+            
             // Find the position of 'upload' in the URL
             let index_word = photo_url.indexOf('fakepath');
+            let index_upload_word = photo_url.indexOf('upload');
             
             // Ensure 'upload' exists in the URL before modifying it
             if (index_word !== -1) {
@@ -53,11 +51,18 @@ export default function MainPage() {
                 let second_url = photo_url.substring(index_word + 9);
                 
                 // Update the photo URL with the new value
-                res.data.products[index].photo = second_url;
+                data.products[index].photo = second_url;
+    
+            }else if(index_upload_word !== -1){
+                 // Extract the part of the URL after 'upload/'
+                 let second_url = photo_url.substring(index_upload_word + 7);
+                
+                 // Update the photo URL with the new value
+                 data.products[index].photo = second_url;
+                
             }
         });
-          setItem(res.data.products);
-        });
+          setItem(data.products);
       } catch (error) {
         console.error("Failed to fetch furniture data:", error);
       }
@@ -74,7 +79,7 @@ export default function MainPage() {
             type="text"
             value={get_id}
             onChange={handleId}
-            placeholder="Mebel ID raqami"
+            placeholder="Mebel nomi"
           />
           <button type="submit">Search</button>
         </form>
