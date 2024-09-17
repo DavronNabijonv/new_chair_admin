@@ -19,7 +19,7 @@ export default function MainPage() {
 
   const filtered_data = (e) => {
     e.preventDefault();
-    setId_data(true); // This assumes you have a state to handle the filtering status
+    setId_data(true); // This assumes you have a state to handle the filtering statusss
 
     const id_response = item.filter((it) => it.name == get_id); // Filtering items based on the `name` property
 
