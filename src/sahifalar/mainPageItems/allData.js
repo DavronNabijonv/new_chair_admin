@@ -20,7 +20,7 @@ export default function AllData( {item_infos} ) {
   },[get_info])
 
   if (!item_infos || item_infos.length === 0) {
-    return <p>No data available</p>; // Fallback if no items are available
+    return <p>No data available</p>; // Fallback if no items are availablee
   }
 
   return (
