@@ -12,6 +12,7 @@ export default function MainPage() {
   const [id_data, setId_data] = useState(false);
   const { mod_togle, setMod_togle } = useContext(ModalTogle);
   const [item, setItem] = useState(); // Initialize as an empty array
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
   const handleId = async (e) => {
     setGet_id(e.target.value);
@@ -36,7 +37,7 @@ export default function MainPage() {
     // get information of products
     async function fetchData() {
       try {
-        const { data } = await axios.get('http://85.159.231.67:4000/v1/api/products');
+        const { data } = await axios.get(`${apiUrl}/products`);
         console.log(data)
         data.products.forEach((product, index) => {
             let photo_url = product.photo;
