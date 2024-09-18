@@ -6,8 +6,8 @@ import { GetAccessToken, ResponseMessage, ShowError } from "../App";
 import Error_res from "./suc_err/error";
 
 function LogIn() {
-  const create_url = `v1/api/auth/add`;  // Relative ppath
-  const logIn_url = `v1/api/auth/login`; // Relative path
+  const create_url = `/auth/add`;  // Relative ppath
+  const logIn_url = `/auth/login`; // Relative path
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
