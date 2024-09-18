@@ -18,7 +18,7 @@ export default function OneData({card_data}) {
       {tog_edit&&<EditModal close_mod_func={()=>{setTog_edit(false)}} infos={get_info} />}
       {tog_del&&<Delete close_del_func={()=>{setTog_del(false)}} del_info={get_info}/>}
         <div className="img_edit_del">
-          <img src={`${imageUrl}/upload/${card_data[0].photo}`} alt="mebel rasmi" />
+          <img src={`${imageUrl}/${card_data[0].photo}`} alt="mebel rasmi" />
           <div className="btns_grp">
             <button
               className="edit"
