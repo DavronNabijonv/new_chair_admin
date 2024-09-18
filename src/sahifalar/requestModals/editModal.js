@@ -106,12 +106,13 @@ export default function EditModal({ close_mod_func, infos }) {
                 onChange={(e) => {
                   setFurnitureInfoEdit({
                     ...furnitureInfoEdit,
-                    photo: e.target.files[0],
+                    photo: e.target.files[0], // Keep the file in state
                   });
                 }}
                 required
               />
             </div>
+
             <div className="input_grp">
               <label for="length">Uzunligi</label>
               <input
