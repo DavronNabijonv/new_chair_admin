@@ -7,7 +7,7 @@ import Error_res from "./suc_err/error";
 
 function LogIn() {
   const create_url = `/auth/add`;  // Relative ppath
-  const logIn_url = `/auth/login`; // Relative pathh
+  const logIn_url = `/auth/login`; // Relative pathhh
 
   const { error_response, setError_response } = useContext(ShowError);
   const { setRes_message } = useContext(ResponseMessage);
