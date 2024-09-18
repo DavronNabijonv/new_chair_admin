@@ -103,7 +103,6 @@ export default function EditModal({ close_mod_func, infos }) {
               <input
                 name="photo"
                 type="file"
-                value={furnitureInfoEdit.photo}
                 onChange={(e) => {
                   setFurnitureInfoEdit({
                     ...furnitureInfoEdit,

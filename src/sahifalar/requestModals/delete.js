@@ -15,6 +15,7 @@ export default function Delete({ del_info, close_del_func }) {
   const { success_response, setSuccess_response } = useContext(ShowSuccess);
   const { token } = useContext(GetAccessToken);
   const { setRes_message } = useContext(ResponseMessage);
+  const imageUrl = process.env.REACT_APP_IMAGE_BASE_URL;
 
   const remove_PopUp_edit = () => {
     setTimeout(() => {
@@ -58,7 +59,7 @@ export default function Delete({ del_info, close_del_func }) {
           </button>
           <h1>Ma`lumotni o`chirish</h1>
           <div className="del_card">
-            <img src={del_info.photo} alt="o`chiriluvchi mahsulot" />
+            <img src={`${imageUrl}/${del_info.photo}`} alt="o`chiriluvchi mahsulot" />
             <div className="del_item_txt">
               <p>
                 Mahsulot IDsi: <span>{del_info["_id"]}</span>
