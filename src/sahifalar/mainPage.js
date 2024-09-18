@@ -46,7 +46,7 @@ export default function MainPage() {
             let index_word = photo_url.indexOf('fakepath');
             let index_upload_word = photo_url.indexOf('upload');
             
-            // Ensure 'upload' exists in the URL before modifying it
+            // Ensure 'upload' exists in the URL before modifying itt
             if (index_word !== -1) {
                 // Extract the part of the URL after 'upload/'
                 let second_url = photo_url.substring(index_word + 9);
