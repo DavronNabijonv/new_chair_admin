@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/v1/api/(.*)",
-      "destination": "http://85.159.231.67:4000/$1"
+      "destination": "http://85.159.231.67:4000/v1/api/$1"
     },
     {
       "source": "/upload/(.*)",
