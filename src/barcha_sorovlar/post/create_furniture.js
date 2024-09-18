@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function createFruniture(furniture_info, ac_token) {
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
-  const url = `${apiUrl}/v1/api/products/add`;
+  const url = `${apiUrl}/products/add`;
 
   try {
     // Create a FormData object
