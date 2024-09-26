@@ -7,70 +7,74 @@ import { ModalTogle } from "../App";
 import OneData from "./mainPageItems/oneData";
 
 export default function MainPage() {
-  const [get_id, setGet_id] = useState();
-  const [info_id, setInfo_id] = useState();
+  const [get_id, setGet_id] = useState("");  // Initialize as an empty string
+  const [info_id, setInfo_id] = useState([]);
   const [id_data, setId_data] = useState(false);
   const { mod_togle, setMod_togle } = useContext(ModalTogle);
-  const [item, setItem] = useState(); // Initialize as an empty array
+  const [items, setItems] = useState([]);  // Renamed `item` to `items` for clarity
+  const [totalPages, setTotalPages] = useState(0);  // Store the total number of pages
+  const [currentPage, setCurrentPage] = useState(1);  // Track the current page
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
-  const handleId = async (e) => {
+  // Handle the input change event for filtering
+  const handleId = (e) => {
     setGet_id(e.target.value);
   };
 
+  // Filter data by `name`
   const filtered_data = (e) => {
     e.preventDefault();
-    setId_data(true); // This assumes you have a state to handle the filtering statusss
+    const filteredItems = items.filter((item) => item.name === get_id);
+    setInfo_id(filteredItems);
+    setId_data(true);
+  };
 
-    const id_response = item.filter((it) => it.name == get_id); // Filtering items based on the `name` property
+  // Fetch paginated data from the backend
+  const fetchDataPagination = async (page = 1) => {
+    try {
+      const { data } = await axios.get(`${apiUrl}/products?page=${page}`);
 
-    if (id_response.length > 0) {
-      // Check if there are any matching items
-      setInfo_id(id_response); // Set the filtered data in the state
-    } else {
-      // Optional: Handle the case where no matching items are found
-      setInfo_id([]); // or any fallback behaviorrr
+      // Calculate total pages only once
+      setTotalPages(Math.ceil(data.total / 10));
+
+      // Process and update the photo URLs
+      const updatedProducts = data.products.map((product) => {
+        const { photo } = product;
+        const indexWord = photo.indexOf("fakepath");
+        const indexUploadWord = photo.indexOf("upload");
+
+        if (indexWord !== -1) {
+          return { ...product, photo: photo.substring(indexWord + 9) };
+        } else if (indexUploadWord !== -1) {
+          return { ...product, photo: photo.substring(indexUploadWord + 7) };
+        }
+        return product; // Return product unchanged if no match
+      });
+
+      setItems(updatedProducts);
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
     }
   };
 
+  // Effect to fetch the first page of data when the component mounts
   useEffect(() => {
-    // get information of products
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(`${apiUrl}/products`);
-        console.log(data)
-        data.products.forEach((product, index) => {
-            let photo_url = product.photo;
-            
-            // Find the position of 'upload' in the URL
-            let index_word = photo_url.indexOf('fakepath');
-            let index_upload_word = photo_url.indexOf('upload');
-            
-            // Ensure 'upload' exists in the URL before modifying itt
-            if (index_word !== -1) {
-                // Extract the part of the URL after 'upload/'
-                let second_url = photo_url.substring(index_word + 9);
-                
-                // Update the photo URL with the new value
-                data.products[index].photo = second_url;
-    
-            }else if(index_upload_word !== -1){
-                 // Extract the part of the URL after 'upload/'
-                 let second_url = photo_url.substring(index_upload_word + 7);
-                
-                 // Update the photo URL with the new value
-                 data.products[index].photo = second_url;
-                
-            }
-        });
-          setItem(data.products);
-      } catch (error) {
-        console.error("Failed to fetch furniture data:", error);
-      }
-    }
+    fetchDataPagination(currentPage);
+  }, [currentPage]);
 
-    fetchData(); // Call the async function to fetch data
-  }, []);
+  // Render pagination controls
+  const renderPagination = () => {
+    const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+    return pages.map((page) => (
+      <p
+        key={page}
+        onClick={() => setCurrentPage(page)} // Update current page when clicked
+        className={page === currentPage ? "active_page" : ""}
+      >
+        {page}
+      </p>
+    ));
+  };
 
   return (
     <div className="mainPage">
@@ -84,29 +88,25 @@ export default function MainPage() {
           />
           <button type="submit">Search</button>
         </form>
-        <button
-          onClick={() => {
-            setId_data(false);
-          }}
-          className="all_furniture"
-        >
+        <button onClick={() => setId_data(false)} className="all_furniture">
           Barcha mebellar
         </button>
         <button
           className="new_furniture"
-          onClick={() => {
-            setMod_togle(true);
-          }}
+          onClick={() => setMod_togle(true)}
         >
           Yangi mebel yaratish
         </button>
         {mod_togle && <PostRequestModal />}
       </div>
+      
+      <div className="pagination_part">{renderPagination()}</div>
+      
       <div className="data_body">
         {id_data ? (
           <OneData card_data={info_id} />
         ) : (
-          <AllData item_infos={item} />
+          <AllData item_infos={items} />
         )}
       </div>
     </div>
