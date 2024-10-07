@@ -5,6 +5,7 @@ import AllData from "./mainPageItems/allData";
 import PostRequestModal from "./requestModals/postRequestModal";
 import { ModalTogle } from "../App";
 import OneData from "./mainPageItems/oneData";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MainPage() {
   const [get_id, setGet_id] = useState("");  // Initialize as an empty string
@@ -57,6 +58,9 @@ export default function MainPage() {
     }
   };
 
+  // use react-query 
+  const {isLoading} = useQuery(['get_data'],fetchDataPagination(currentPage));
+
   // Effect to fetch the first page of data when the component mounts
   useEffect(() => {
     fetchDataPagination(currentPage);
@@ -75,6 +79,7 @@ export default function MainPage() {
       </p>
     ));
   };
+
 
   return (
     <div className="mainPage">
@@ -105,7 +110,7 @@ export default function MainPage() {
       <div className="data_body">
         {id_data ? (
           <OneData card_data={info_id} />
-        ) : (
+        ) : isLoading?'Ma`lumotlar yuklanmoqda...':(
           <AllData item_infos={items} />
         )}
       </div>
